@@ -1,0 +1,52 @@
+---
+# When a tag is created
+# - build and publish container to quay
+# - publish role to ansible-galaxy
+name: Release a new version, publish artefacts
+
+on:
+  push:
+    tags:
+      - "v*"
+    branches:
+      - "main"
+
+# https://github.com/marketplace/actions/push-to-registry
+jobs:
+  publish:
+    name: Build UMD4 for CentOS 7
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        umd_version:
+          - "umd4"
+        os:
+          - "centos7"
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Build umd4-centos7 image with molecule
+        id: build-image
+        uses: gofrolist/molecule-action@v2
+        with:
+          molecule_command: create
+          molecule_args: --scenario-name ${{ matrix.umd_version }}
+        env:
+          ANSIBLE_FORCE_COLOR: "1"
+
+      # TODO look into pushing some description
+      # https://github.com/marketplace/actions/update-container-description-action
+      - name: Publish image to Quay
+        run: |
+          docker commit umd-${{ matrix.os }} quay.io/egi/${{ matrix.umd_version }}:${{ matrix.os }}
+          echo "${{ secrets.QUAY_REGISTRY_PASSWORD }}" | docker login -u="egi+egi_github" --password-stdin quay.io
+          docker push quay.io/egi/${{ matrix.umd_version }}:${{ matrix.os }}
+
+      # Publish role to ansible galaxy
+      - name: galaxy
+        uses: robertdebock/galaxy-action@1.2.0
+        with:
+          galaxy_api_key: ${{ secrets.GALAXY_API_KEY }}

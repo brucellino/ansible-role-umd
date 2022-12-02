@@ -1,5 +1,6 @@
-molecule
-pymarkdownlint
+ansible
+molecule[docker]
 docker
 pytest-xdist
 ruamel.yaml
+pytest-testinfra

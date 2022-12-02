@@ -1,0 +1,30 @@
+---
+name: Run molecule tests
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  molecule:
+    name: Run molecule
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        umd_version:
+          - default
+          - umd4
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          path: "${{ github.repository }}"
+      - name: Molecule
+        uses: gofrolist/molecule-action@v2
+        with:
+          molecule_options: --debug
+          molecule_command: test
+          molecule_args: --scenario-name ${{ matrix.umd_version }}
+          molecule_working_dir: "${{ github.repository }}"
+        env:
+          ANSIBLE_FORCE_COLOR: "1"
