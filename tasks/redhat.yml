@@ -11,7 +11,7 @@
     name: "UMD-{{ release }}-candidate-base"
     description: "UMD-{{ release }} candidate - base"
     file: "UMD-{{ release }}-candidate"
-    baseurl: "http://repository.egi.eu/sw/production/umd/candidate/{{ release }}/{{ nick }}/x86_64/base" 
+    baseurl: "https://repository.egi.eu/software/umd/{{ release }}/{{ nick }}/x86_64/base" 
     protect: yes
     enabled: yes
     priority: 1
@@ -23,7 +23,7 @@
     name: "UMD-{{ release }}-candidate-updates"
     description: "UMD-{{ release }} candidate - updates"
     file: "UMD-{{ release }}-candidate"
-    baseurl: "http://repository.egi.eu/sw/production/umd/candidate/{{ release }}/{{ nick }}/x86_64/updates" 
+    baseurl: "https://repository.egi.eu/software/umd/{{ release }}/{{ nick }}/x86_64/updates" 
     protect: yes
     enabled: yes
     priority: 1
