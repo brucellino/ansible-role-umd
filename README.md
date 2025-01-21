@@ -1,11 +1,11 @@
 # Unified Middleware Distribution (UMD)
 
-[![Docker Repository on Quay](https://quay.io/repository/egi/umd4/status "Docker Repository on Quay")](https://quay.io/repository/egi/umd4)
+[![Docker Repository on Quay](https://quay.io/repository/egi/umd5/status "Docker Repository on Quay")](https://quay.io/repository/egi/umd5)
 
 The role deploys the repository files needed to access the products distributed
-by [UMD](https://go.egi.eu/umd), currently supported for Scientific Linux 6 and
-CentOS7. This role optionally deploys the Interoperable Global Trust Federation
-(IGTF) repository file.
+by [UMD](https://go.egi.eu/umd), currently supported for AlmaLinux 9 (and
+compatible). This role optionally deploys the Interoperable Global Trust
+Federation (IGTF) repository file.
 
 Information on available UMD release is available on the
 [EGI repository](https://repository.egi.eu/).
@@ -30,15 +30,13 @@ in the metadata file.
 Brief description of the variables used in the role:
 
 - `release` (int) UMD release version (no default)
-  - _e.g.,_ `release: 4`
+  - _e.g.,_ `release: 5`
 - `enable_candidate_repo: false`: Enable the candidate repository, commonly used
   in the release candidate (defaults to `false`)
   - _e.g.,_ `enable_candidate_repo: false`
 - `enable_testing_repo: false`: Enables the testing repository (defaults to
   'false')
   - _e.g.,_ `enable_testing_repo: false`
-- `enable_untested_repo: false`: Enables the untested repository (defaults to
-  'false')
 - `ca_verification: false`: Enables the IGTF repository for trusted CAs
   (defaults to `false`)
 - `ca_version: 1`: CA version (defaults to '1', only if `ca_verification: true`)
@@ -67,7 +65,7 @@ are some examples of how to use this role.
 ```yaml
 - hosts: all
   roles:
-    - { role: ansible-umd, release: 4 }
+    - { role: ansible-umd, release: 5 }
 ```
 
 ### Install UMD repository files together with the trusted CAs and fetch-crl
@@ -75,7 +73,7 @@ are some examples of how to use this role.
 ```yaml
 - hosts: all
   roles:
-    - { role: ansible-umd, release: 4, ca_verification: true, crl_deploy: true }
+    - { role: ansible-umd, release: 5, ca_verification: true, crl_deploy: true }
 ```
 
 ### Install UMD repository files, enabling the candidate repository
@@ -83,7 +81,7 @@ are some examples of how to use this role.
 ```yaml
 - hosts: all
   roles:
-    - { role: ansible-umd, release: 4, enable_candidate_repo: true }
+    - { role: ansible-umd, release: 5, enable_candidate_repo: true }
 ```
 
 ## Running molecule locally

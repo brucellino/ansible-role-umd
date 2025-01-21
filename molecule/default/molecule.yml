@@ -1,6 +1,8 @@
 ---
 dependency:
   name: galaxy
+  options:
+    requirements-file: molecule/default/collections.yml
 driver:
   name: docker
 scenario:
@@ -11,8 +13,8 @@ lint: |
   ansible-lint --force-color
   flake8 --config .github/linters/.flake8
 platforms:
-  - name: umd-centos7
-    image: quay.io/centos/centos:7
+  - name: umd-almalinux9
+    image: almalinux:9
     pre_build_image: false
 provisioner:
   name: ansible
@@ -20,7 +22,7 @@ provisioner:
     defaults:
       force_color: true
       callback_enabled: yaml, stdout, profile_tasks
-      stdout_callback: yaml
+      stdout_callback: community.general.yaml
       bin_ansible_callbacks: true
 verifier:
   name: testinfra

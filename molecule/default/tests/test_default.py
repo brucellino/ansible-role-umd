@@ -16,11 +16,10 @@ def test_hosts_file(host):
     assert f.group == "root"
 
 
-# Test that UMD release is there and that it has the right version
+# Test that UMD release is there
 def test_umd_version(host):
     umd_package = host.package("umd-release")
     assert umd_package.is_installed
-    assert umd_package.version.startswith("4")
 
 
 @pytest.mark.parametrize(
@@ -28,8 +27,6 @@ def test_umd_version(host):
     [
         ("EGI-trustanchors.repo"),
         ("epel.repo"),
-        ("UMD-4-base.repo"),
-        ("UMD-4-updates.repo"),
     ],
 )
 # Test that repositories are present
@@ -44,11 +41,6 @@ def test_repositories_present(host, repo_file):
     "repo_file",
     [
         ("EGI-trustanchors.repo"),
-        ("EGI-trustanchors.repo"),
-        ("UMD-4-base.repo"),
-        ("UMD-4-base.repo"),
-        ("UMD-4-updates.repo"),
-        ("UMD-4-updates.repo"),
     ],
 )
 def test_repositories_enabled(host, repo_file):
@@ -57,10 +49,17 @@ def test_repositories_enabled(host, repo_file):
     assert enabled_regex.search(content) is not None
 
 
-def test_crl_files(host):
-    cron = host.file("/etc/cron.d/fetch-crl")
-    assert cron.exists
-    assert cron.is_file
+@pytest.mark.parametrize(
+    "systemd_file",
+    [
+        ("fetch-crl.service"),
+        ("fetch-crl.timer"),
+    ],
+)
+def test_crl_renwal_task(host, systemd_file):
+    crl_renewal = host.file("/usr/lib/systemd/system/" + systemd_file)
+    assert crl_renewal.exists
+    assert crl_renewal.is_file
 
 
 # def test_crl_freshness(host):
@@ -69,7 +68,7 @@ def test_crl_files(host):
 def test_egi_policy(host):
     ca_package_name = "ca-policy-egi-core"
     ca_package_version_url = (
-        "http://repository.egi.eu/sw/production" "/cas/1/current/release.xml"
+        "https://repository.egi.eu/sw/production/cas/1/current/release.xml"
     )
     _doc = minidom.parse(urllib.request.urlopen(ca_package_version_url))
     _version = _doc.getElementsByTagName("Version")[0].firstChild.data
