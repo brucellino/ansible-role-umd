@@ -37,12 +37,14 @@ jobs:
           pip install -r requirements.txt
       - name: Build umd5-almalinux9 image with molecule
         run: |
-          molecule create --scenario-name ${{ matrix.umd_version }}
+          molecule --debug create --scenario-name ${{ matrix.umd_version }}
         env:
           ANSIBLE_FORCE_COLOR: "1"
           PY_COLORS: "1"
 
-      # TODO look into pushing some description
+      # Access is managed at https://quay.io/repository/egi/umd5?tab=settings
+      # Credentials for the robot account can be retrieved there
+      # TODO: look into pushing some description
       # https://github.com/marketplace/actions/update-container-description-action
       - name: Publish image to Quay
         run: |
@@ -52,6 +54,6 @@ jobs:
 
       # Publish role to ansible galaxy
       - name: galaxy
-        uses: robertdebock/galaxy-action@1.2.0
+        uses: robertdebock/galaxy-action@1.2.1
         with:
           galaxy_api_key: ${{ secrets.GALAXY_API_KEY }}
