@@ -11,10 +11,10 @@
       supported OS"
   when: (release is not defined) or (release_url[release] is not defined)
 
-- name: Include OS-specific tasks
-  ansible.builtin.include_tasks: "{{ ansible_os_family | lower }}.yml"
+- name: Deploy RedHat-specific
+  include: redhat.yml
+  when: (ansible_distribution == "RedHat") or (ansible_distribution == "CentOS") or (ansible_distribution == "Scientific") or (ansible_distribution == "AlmaLinux")
 
-# XXX Document how this can be used
 - name: Download verification repository files
   ansible.builtin.get_url:
     url: "{{ item }}"
