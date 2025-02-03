@@ -6,7 +6,7 @@ on:
 
 jobs:
   super-lint:
-    name: Lint with Super-Linter
+    name: Static Code Quality Checks
     runs-on: ubuntu-latest
 
     steps:
