@@ -1,0 +1,3 @@
+---
+# .mega-linter.yml
+APPLY_FIXES: ["YAML", "JSON", "PYTHON"]
