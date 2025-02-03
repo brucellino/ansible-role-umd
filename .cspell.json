@@ -23,6 +23,10 @@
     "gpgcheck",
     "gpgkey",
     "WLCG",
-    "repofile"
+    "repofile",
+    "almalinux",
+    "robertdebock",
+    "artefacts",
+    "testinfra"
   ]
 }
