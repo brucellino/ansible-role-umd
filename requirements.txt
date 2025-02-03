@@ -1,9 +1,5 @@
-ansible
-molecule
-molecule-plugins[docker]
-docker
-pytest
+ansible-dev-tools==25.1.0
+molecule-plugins[docker]==23.7.0
+pytest==8.3.4
 pytest-xdist
-pytest-testinfra
-ruamel.yaml
-setuptools
+pytest-testinfra==10.1.1

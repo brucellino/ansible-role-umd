@@ -6,9 +6,10 @@
     "**/.pnpm-lock.json",
     ".vscode",
     "package-lock.json",
-    "megalinter-reports"
+    "megalinter-reports",
+    "requirements.txt"
   ],
   "language": "en",
   "version": "0.2",
-  "words": ["commitlint", "envrc", "pycache", "venv"]
+  "words": ["commitlint", "envrc", "pycache", "venv", "EDITMSG"]
 }
