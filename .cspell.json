@@ -11,5 +11,18 @@
   ],
   "language": "en",
   "version": "0.2",
-  "words": ["commitlint", "envrc", "pycache", "venv", "EDITMSG"]
+  "words": [
+    "commitlint",
+    "envrc",
+    "pycache",
+    "venv",
+    "EDITMSG",
+    "EPEL",
+    "IGTF",
+    "trustanchors",
+    "gpgcheck",
+    "gpgkey",
+    "WLCG",
+    "repofile"
+  ]
 }
