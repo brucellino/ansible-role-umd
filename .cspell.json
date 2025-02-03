@@ -1,0 +1,35 @@
+{
+  "ignorePaths": [
+    "**/node_modules/**",
+    "**/vscode-extension/**",
+    "**/.git/**",
+    "**/.pnpm-lock.json",
+    ".vscode",
+    "package-lock.json",
+    "megalinter-reports",
+    "requirements.txt",
+    ".mega-linter.yml"
+  ],
+  "language": "en",
+  "version": "0.2",
+  "words": [
+    "almalinux",
+    "artefacts",
+    "commitlint",
+    "conftest",
+    "EDITMSG",
+    "envrc",
+    "EPEL",
+    "gpgcheck",
+    "gpgkey",
+    "IGTF",
+    "pycache",
+    "pytest",
+    "repofile",
+    "robertdebock",
+    "testinfra",
+    "trustanchors",
+    "venv",
+    "WLCG"
+  ]
+}
