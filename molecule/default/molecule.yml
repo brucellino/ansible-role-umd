@@ -7,11 +7,6 @@ driver:
   name: docker
 scenario:
   name: default
-lint: |
-  set -e
-  yamllint .
-  ansible-lint --force-color
-  flake8 --config .github/linters/.flake8
 platforms:
   - name: umd-almalinux9
     image: almalinux:9
@@ -28,6 +23,4 @@ provisioner:
 verifier:
   name: testinfra
   options:
-    verbose: true
-    color: "yes"
-    capture: "no"
+    p: "no:pytest-ansible"

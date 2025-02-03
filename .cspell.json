@@ -7,26 +7,29 @@
     ".vscode",
     "package-lock.json",
     "megalinter-reports",
-    "requirements.txt"
+    "requirements.txt",
+    ".mega-linter.yml"
   ],
   "language": "en",
   "version": "0.2",
   "words": [
+    "almalinux",
+    "artefacts",
     "commitlint",
-    "envrc",
-    "pycache",
-    "venv",
+    "conftest",
     "EDITMSG",
+    "envrc",
     "EPEL",
-    "IGTF",
-    "trustanchors",
     "gpgcheck",
     "gpgkey",
-    "WLCG",
+    "IGTF",
+    "pycache",
+    "pytest",
     "repofile",
-    "almalinux",
     "robertdebock",
-    "artefacts",
-    "testinfra"
+    "testinfra",
+    "trustanchors",
+    "venv",
+    "WLCG"
   ]
 }
