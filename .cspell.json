@@ -27,6 +27,7 @@
     "pytest",
     "repofile",
     "robertdebock",
+    "sarif",
     "testinfra",
     "trustanchors",
     "venv",
